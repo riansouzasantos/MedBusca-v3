@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Unidade de Pronto Atendimento (UPA)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/busca_upa.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Buscar Unidade de Pronto Atendimento (UPA)</h2>
+    
+        <form action="/resultados_upa" method="post">
+            {{ form_upa.csrf_token }}
+            
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                {{ form_upa.estado_unidade }}
+            </div>
+                      
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                {{ form_upa.cidade_unidade }}
+            </div>
+               
+            <div class="form-group">
+                <label for="upa">UPA:</label>
+                {{ form_upa.upa }}
+            </div>
+            
+            <input type="submit" value="Buscar">
+            <a href="{{ url_for('hero') }}" class="botao-inicio">Início</a>
+        </form>
+    </div>
+</body>
+</html>

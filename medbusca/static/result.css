@@ -1,0 +1,106 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  /* Estilização para a tabela */
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 6px; /* Reduzindo o espaçamento */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px; /* Aumentando o tamanho da fonte */
+  }
+  
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilizações específicas para os dados da tabela */
+  .especialidade {
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  .endereco {
+    font-style: italic;
+    color: #777;
+  }
+  
+  /* Estilização para o link "Home" */
+  nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none !important; /* Remove o sublinhado */
+    color: #007bff;
+    font-weight: bold;
+}
+
+.botao-inicio {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none; /* Garante que não haja sublinhado */
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.botao-inicio:hover {
+    background-color: #0056b3;
+}
+
+/* Restante do seu CSS */
+
+/* Estilos para telas pequenas */
+@media screen and (max-width: 767px) {
+  table {
+      width: 100%;
+      display: block;
+      overflow-x: auto; /* Adiciona uma barra de rolagem horizontal se necessário */
+  }
+
+  th, td {
+      display: block;
+      width: 100%;
+  }
+
+  th {
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+  }
+
+  td {
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+  }
+
+  tr:nth-child(even) {
+      background-color: #f2f2f2;
+  }
+}

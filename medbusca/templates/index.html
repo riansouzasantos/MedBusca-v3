@@ -4,16 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>MedBusca - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
  <!-- <script src="MedBusca/assets/js/main.js/glightbox.js"></script>  -->
   <!-- Favicons -->
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/js/main.js"></script>
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/js/main.js"></script>
+ <!-- <link href="static/assets/img/favicon.png" rel="icon"> -->
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -21,18 +20,18 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <script src="assets/js/conection.js"></script>
+  <link href="static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="static/assets/js/conection.js"></script>
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="static/assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Medilab
@@ -65,18 +64,20 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">M.B.SUS</a></h1>
+      <h1 class="logo me-auto">M.B.SUS</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Início</a></li>
+          <li><a class="nav-link scrollto active" href="{{ url_for('hero') }}">Início</a></li>
           <li><a class="nav-link scrollto" href="#about">Ajuda</a></li>
-         <!-- <li><a class="nav-link scrollto" href="#departments">Emergência</a></li>  -->
           <li><a class="nav-link scrollto" href="#doctors">Sobre</a></li>
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-          
+          <li></li><a href="{{ url_for('busca') }}" class="btn-get-started scrollto">Urgência</a></li>
+          <li></li><a href="{{ url_for('hero') }}" class="btn-get-started scrollto">Buscar UPAs </a></li>
+         <!-- <li></li><a href="{{ url_for('atualizaurl') }}" class="btn-get-started scrollto">atualizar </a></li>
+       <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -90,24 +91,20 @@
               <li><a href="#">Drop Down 2</a></li>
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
-            </ul>  
-          </li>  -->
-          <!--<li><a class="nav-link scrollto" href="#contact">Contatos</a></li> -->
+            </ul>  -->
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline"></span>Urgência</a>
-
     </div>
-  </header><!-- End Header -->
+  </header> <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <h1>Bem vindo ao MedBusca</h1>
       <h2>È com prazer que te fornecemos informações valiosas com rapidez e eficiencia</h2>
-      <a href="#about" class="btn-get-started scrollto">Como Usar</a>
+      <a href="{{ url_for('busca') }}" class="btn-get-started scrollto">Urgência</a>
     </div>
   </section><!-- End Hero -->
 
@@ -115,36 +112,37 @@
 
     <!-- ======= Why Us Section ======= -->
 
-    <section id="why-us" class="why-us">
+    <!-- <section id="why-us" class="why-us">
       <div class="container">
 
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="content">
-              <h3>Mais clareza no SUS </h3>
+             <div class="content">
+              <h3>Mais praticidade no SUS </h3>
               <p>
                 O MedBusca tem como objetivo principal descomplicar o acesso do paciente ao médico
                 do SUS (Sistema unico de saúde).
               </p>
-              <!-- <div class="text-center">
+               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
               </div>
             </div> 
               End .content -->
-            </div>
+          <!--  </div> 
           </div>
 
         </div>
-    </section>
+    </section> -->
     <!-- End Why Us Section -->
-
+        <br> <br> <br> <br> <br> <br>
+        
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container-fluid">
 
         <div class="row">
           <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+            <a href="https://youtu.be/YJaEz2qBveY" class="glightbox play-btn mb-4"></a>
           </div>
 
           <div
@@ -156,16 +154,15 @@
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Especialidade</a></h4>
+              <h4 class="title"><a href="">Urgência</a></h4>
               <p class="description">Essa opção te leva para uma busca rápida, ao preencher os campos será bem
                 direcionado(a).</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Emergência</a></h4>
-              <p class="description">Contém informações como número de telefone, sujestões de unidades com
-                especializações para diversas situações.</p>
+              <h4 class="title"><a href="">Buscar UPAs</a></h4>
+              <p class="description"> Traz todas as UPAs cadastradas no sistema MedBusca.</p>
             </div>
 
             <div class="icon-box">
@@ -184,383 +181,26 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Counts Section ======= -->
-   <!-- <section id="counts" class="counts">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <i class="fas fa-user-md"></i>
-              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1"
-                class="purecounter"></span>
-              <p></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
-              <i class="far fa-hospital"></i>
-              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1"
-                class="purecounter"></span>
-              <p></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="fas fa-flask"></i>
-              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1"
-                class="purecounter"></span>
-              <p></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="fas fa-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1"
-                class="purecounter"></span>
-              <p></p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section> -->  <!-- End Counts Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-
-        </div>
-
-          <style>
-            /* Estilos para a tela de resultados inicialmente oculta */
-            body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* Estilizações específicas para os dados da tabela */
-        /* Você pode adicionar mais estilos conforme necessário */
-        .especialidade {
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        .endereco {
-            font-style: italic;
-            color: #777;
-        }
-
-        /* Estilos para tornar a tabela responsiva em telas menores */
-        @media screen and (max-width: 768px) {
-            table {
-                overflow-x: auto;
-            }
-
-            /* Transforma as células da tabela em linhas */
-            table thead {
-                display: none;
-            }
-
-            table, table tbody, table tr, table td {
-                display: block;
-                width: 100%;
-            }
-
-            table tr {
-                margin-bottom: 15px;
-            }
-
-            table td {
-                text-align: right;
-                padding-left: 50%;
-                text-align: right;
-                position: relative;
-            }
-
-            table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 0;
-                width: 50%;
-                padding-left: 15px;
-                font-weight: bold;
-                text-align: left;
-            }
-        }
-    </style>
-        <body>
-        
-            <!-- Tela de resultados (inicialmente oculta) -->
-            <div id="resultado-busca">
-              <h2>Resultados da Busca</h2>
-
-              <table>
-                  <tr>
-                      
-                      <th>Data e Hora de Início</th>
-                      <th>Data e Hora de Fim</th>
-                      <th>Especialidade</th>
-                      <th>Rua</th>
-                      <th>CEP</th>
-                      <th>Número</th>
-                      <th>Bairro</th>
-                      <th>Cidade</th>
-                      <th>Estado</th>
-                      
-                  </tr>
-                  {% for resultado in resultados %}
-                  <tr>
-                      
-                      <td>{{ resultado.dataHoraInicio }}</td>
-                      <td>{{ resultado.dataHoraFim }}</td>
-                      <td class="especialidade">{{ resultado.especialidade }}</td>
-                      <td class="endereco">{{ resultado.rua_unidade }}</td>
-                      <td class="endereco">{{ resultado.cep_unidade }}</td>
-                      <td>{{ resultado.numero_unidade }}</td>
-                      <td>{{ resultado.bairro_unidade }}</td>
-                      <td>{{ resultado.cidade_unidade }}</td>
-                      <td>{{ resultado.estado_unidade }}</td>
-                      
-                  </tr>
-                  {% endfor %}
-              </table>
-                <center>
-                <button onclick="fecharResultados()" style="background-color: #007bff; color: white;">Fechar</button>
-                </center>
-          </div>
-    
-          <!-- Outros elementos... -->
-    
-                <script>
-                      function mostrarResultados() {
-                    document.getElementById('resultado-busca').style.display = 'block';
-                }
-
-                function fecharResultados() {
-                    document.getElementById('resultado-busca').style.display = 'none';
-                }
-
-                const lightbox = GLightbox();
-                </script>
-      </body>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-
-
-
-
       <!-- ======= Appointment Section ======= -->
-      <section id="appointment" class="appointment section-bg">
-        <div class="container">
-
-          <div class="section-title">
-            <h2>Buscar especialidade</h2>
-            <p>Ao preencher os campos solicitados e buscar terá respostas que poderam te ajudar.</p>
-          </div>
-
-            <div class="search-form">
-          
-                <body>
-                    
-                    <form action="/resultados" method="post">
-                        <label for="estado">Estado:</label>
-                        <input type="text" id="estado" name="estado">
-                        
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" id="cidade" name="cidade">
-                        
-                        <label for="especialidade">Especialidade:</label>
-                        <input type="text" id="especialidade" name="especialidade">
-                        <Center>
-                        <a href="#services" onclick="mostrarResultados()" class="botao-link">Buscar</a>
-                        </Center>
-                    </form>
-                
-                </body>
-            
-
-              <!-- Os resultados da busca serão exibidos aqui -->
-            </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Appointment Section -->
-
-    <!-- ======= Departments Section ======= -->
-    <!--  <section id="departments" class="departments">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Departments</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-            in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row gy-4">
-          <div class="col-lg-3">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Hepatology</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Pediatrics</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Eye Care</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-9">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Cardiology</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer
-                      a videna mareta paulona marka</p>
-                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa
-                      odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni
-                      nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-2">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Et blanditiis nemo veritatis excepturi</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer
-                      a videna mareta paulona marka</p>
-                    <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt
-                      est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque
-                      beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/departments-2.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-3">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                    <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus
-                      non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                    <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque
-                      necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum
-                      odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-4">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis
-                      delectus</p>
-                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam
-                      fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores
-                      sed qui veritatis aperiam quia a laborum inventore</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab-5">
-                <div class="row gy-4">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut
-                      quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae
-                      molestiae voluptate vel</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/departments-5.jpg" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>  --> <!-- End Departments Section -->
-
     <!-- ======= Doctors Section ======= -->
     <section id="doctors" class="doctors">
       <div class="container">
 
         <div class="section-title">
-          <h2>Sobre nós</h2>
-          <p>Somos estudantes do Senai de Lauro de freitas, cursando desenvolvimento de sistemas turma 82706 noturno.
+          <h2>Sobre</h2>
+          <p>"O MedBusca foi desenvolvido por um grupo de estudantes do Senai de Lauro de Freitas, Bahia, Brasil,
+              cursando Desenvolvimento de Sistemas na turma G82706 no período noturno, com início em 05/11/2023.
+              O sistema é composto por dois módulos: o módulo de usuário e o módulo de unidade/UPA."
           </p>
         </div>
 
-        <div class="row">
+       <!--- <div class="row">
 
-          <div class="col-lg-6">
+           <div class="col-lg-6">
             <div class="member d-flex align-items-start">
-             <!-- <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
-                <h4>Maiq</h4>
+              <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div> -->
+              <!-- <div class="member-info">
+                <h4>Antônio</h4>
                 <span>componente do grupo de tcc</span>
                 <p>Estudante do curso de desenvolvimento de sistemas no Senai Lauro de Freitas Ba</p>
                 <div class="social">
@@ -571,12 +211,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --> 
 
-          <div class="col-lg-6 mt-4 mt-lg-0">
+          <!-- <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="member d-flex align-items-start">
-             <!-- <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
+             <!- <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div> -->
+              <!-- <div class="member-info">
                 <h4>Amenda</h4>
                 <span>Componente do grupo de tcc</span>
                 <p>Estudante do curso de desenvolvimento de sistemas no Senai Lauro de Freitas</p>
@@ -588,12 +228,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --> 
 
-          <div class="col-lg-6 mt-4">
+          <!-- <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
-             <!-- <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>-->
-              <div class="member-info">
+             <!- <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>-->
+              <!-- <div class="member-info">
                 <h4>Ademilson</h4>
                 <span>Componente do grupo de tcc</span>
                 <p>Estudante do curso de desenvolvimento de sistemas no Senai Lauro de Freitas</p>
@@ -605,12 +245,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --> 
 
-          <div class="col-lg-6 mt-4">
+          <!-- <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
-            <!--  <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div> -->
-              <div class="member-info">
+            <!-  <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div> -->
+              <!-- <div class="member-info">
                 <h4>Iago</h4>
                 <span>Componente do grupo de tcc</span>
                 <p>Estudante do curso de desenvolvimento de sistemas no Senai Lauro de Freitas</p>
@@ -622,9 +262,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --> 
 
-        </div>
+        <!--</div>-->
 
       </div>
     </section><!-- End Doctors Section -->
@@ -646,7 +286,7 @@
                   class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  Na upa do Cabula Salvador-ba próximo ao HGRS(Hospital G. Roberto Santos), para casos como irritação,
+                  Na upa do Cabula Salvador-Ba próximo ao HGRS(Hospital G. Roberto Santos), para casos como irritação,
                   passivel infecção e outros casos não traumáticos. tem atandimento todos os dias.
                 </p>
               </div>
@@ -731,64 +371,64 @@
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-2.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-2.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-3.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-3.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-4.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-4.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-5.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-5.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-6.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-6.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-7.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-7.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-8.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+              <a href="static/assets/img/gallery/gallery-8.jpg" class="galelry-lightbox">
+                <img src="static/assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
               </a>
             </div>
           </div>
@@ -958,14 +598,14 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="static/assets/js/main.js"></script>
   
 
 </body>

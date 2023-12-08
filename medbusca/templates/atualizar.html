@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/atualizar.css">
+    <title>Atualização de URLs de Unidades</title>
+    <!-- Seus estilos e links para bibliotecas aqui -->
+</head>
+<body>
+    <h1>Atualização de URLs de Unidades</h1>
+
+    <!-- Mostrar as unidades e permitir atualização -->
+    <form method="POST" action="{{ url_for('atualizaurl') }}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rua</th>
+                    <th>Número</th>
+                    <th>CEP</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Localização</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for unidade in unidades %}
+                    <tr>
+                        <td>{{ unidade.rua_unidade }}</td>
+                        <td>{{ unidade.numero_unidade }}</td>
+                        <td>{{ unidade.cep_unidade }}</td>
+                        <td>{{ unidade.bairro_unidade }}</td>
+                        <td>{{ unidade.cidade_unidade }}</td>
+                        <td>{{ unidade.estado_unidade }}</td>
+                        <td><input type="text" name="url_unidade_{{ unidade.id }}" value="{{ unidade.url_unidade }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Atualizar URLs</button>
+    </form>
+
+    <!-- Exibição de Unidades (opcional) -->
+    <!-- <h2>Unidades Cadastradas</h2>
+    <ul>
+        {% for unidade in unidades %}
+            <li>{{ unidade.nome_unidade }} - URL: {{ unidade.url_unidade }}</li>
+        {% endfor %}
+    </ul> -->
+
+    <!-- Seus scripts e outros conteúdos aqui -->
+</body>
+</html>
