@@ -1,0 +1,85 @@
+/* Estilos base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.navbar {
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: right; /* Ajusta para o canto direito */
+    margin-right: 40px; /* Adiciona um espaço entre os links e a borda */
+}
+
+.nav-list li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: center;
+}
+
+form input[type="file"],
+form input[type="submit"] {
+    width: calc(35% - 0px);
+    margin: 10px;
+    padding: 10px; /* Diminui o padding dos botões */
+    border: none;
+    border-radius: 5px;
+    background-color: #2980b9;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="file"]:hover,
+form input[type="submit"]:hover {
+    background-color: #79a7d4;
+}
+
+/* Media queries para tornar responsivo */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    form input[type="file"],
+    form input[type="submit"] {
+        width: calc(100% - 40px);
+        padding: 8px; /* Diminui o padding dos botões para telas menores */
+    }
+
+    .nav-list {
+        text-align: left; /* Alinha os links à esquerda para telas menores */
+        margin-right: 0;
+        margin-left: 20px; /* Adiciona espaço à esquerda dos links */
+    }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="static/login.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Conecte-se</h1>
+    <h3>"Acesso restrito a gestores registrados."</h3>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        <br>
+        <input type="submit" value="Entrar">
+        <!-- Novo texto e botão -->
+        <p>Esqueceu sua senha? <a href="#">Redefinir senha</a></p>
+        <!-- <button type="button" class="botao-esqueceu">Enviar link de redefinição</button> -->
+       <center> <a href="{{ url_for('hero') }}" class="botao-inicio">Início</a> </center>
+
+    </form>
+</body>
+</html>
+

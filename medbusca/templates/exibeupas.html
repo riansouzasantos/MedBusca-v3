@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Busca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+ /* Estilização base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    color: #007bff;
+}
+
+/* Estilização para a tabela */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 6px; /* Reduzindo o espaçamento */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px; /* Aumentando o tamanho da fonte */
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilizações específicas para os dados da tabela */
+.especialidade {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.endereco {
+    font-style: italic;
+    color: #777;
+}
+
+
+
+/* Estilização para o link "Home" */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none !important; /* Remove o sublinhado */
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Estilização para o contêiner dos botões */
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Alinha os botões horizontalmente */
+}
+
+.botao-inicio {
+    padding: 10px 20px;
+    margin: 0 5px; /* Espaço entre os botões */
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    width: 60px; /* Largura dos botões */
+    text-align: center;
+}
+
+.botao-inicio:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para telas pequenas */
+@media screen and (max-width: 767px) {
+    .text-center {
+        flex-direction: column; /* Coloca os botões em coluna */
+        align-items: center; /* Alinha os botões ao centro na vertical */
+    }
+
+    .botao-inicio {
+        width: auto; /* Retorna para o tamanho padrão */
+        margin: 5px; /* Espaço entre os botões */
+    }
+}
+
+
+/* Estilização para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 8px; /* Espaçamento */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center; /* Alinhar o texto do cabeçalho ao centro */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilizações específicas para os dados da tabela */
+.especialidade {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.endereco {
+    font-style: italic;
+    color: #777;
+}
+
+/* Estilos para telas pequenas */
+@media screen and (max-width: 767px) {
+    table {
+        width: 100%;
+        /* display: block; */
+        overflow-x: auto;
+    }
+
+    th, td {
+        display: block;
+        width: 100%;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td {
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Estas são as UPAs que atendem à especialidade selecionada.</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <!-- <th>Data e Hora de Início</th>
+                        <th>Data e Hora de Fim</th> -->
+                        <th>Código da Unidade</th>
+                        <th>Nome da unidade</th>
+                        <th>Rua</th>
+                        <th>CEP</th>
+                        <th>Número</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>Localização</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if unidades %}
+                    {% for unidade in unidades %}
+                        <tr>
+                            <!-- <td>{{ unidade.dataHoraInicio }}</td>
+                            <td>{{ unidade.dataHoraFim }}</td> -->
+                            <td>{{ unidade.id_unidade }}</td>
+                            <td>{{ unidade.nome_unidade }}</td>
+                            <td>{{ unidade.rua_unidade }}</td>
+                            <td>{{ unidade.numero_unidade }}</td>
+                            <td>{{ unidade.cep_unidade }}</td>
+                            <td>{{ unidade.bairro_unidade }}</td>
+                            <td>{{ unidade.cidade_unidade }}</td>
+                            <td>{{ unidade.estado_unidade }}</td>
+                            <td><a href="{{ unidade.url_unidade }}"><i class="material-icons">location_on</i></a></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="10">Nenhum resultado encontrado.</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <a href="{{ url_for('hero') }}" class="botao-inicio">Início</a>
+            <a href="{{ url_for('busca') }}" class="botao-inicio">Buscar</a>
+            <a href="{{ url_for('especialidades') }}" class="botao-inicio">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>

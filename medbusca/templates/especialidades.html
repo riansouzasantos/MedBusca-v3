@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unidades de saúde</title>
+    <link href="static/esp.css" rel="stylesheet">
+</head>
+<center>
+<body>
+    <div class="container">
+        <h1 class="titulo">Clique na especialidades</h1>
+    </div>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Código</th>
+                        <th scope="col">Especialidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for especialidade in especialidades %}
+                        <tr class="table-primary">
+                            <th scope="row">{{ especialidade.id_especialidade_m }}</th>
+                            <!-- <td>
+                                <a href="{{ url_for('resultados') }}">{{ especialidade.descricao_esp }}</a>
+                            </td> -->
+                            <td>
+                                <a href="{{ url_for('exibeupas', id_especialidade_m=especialidade.id_especialidade_m) }}">{{ especialidade.descricao_esp }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+              <a href="{{ url_for('hero') }}" class="botao-inicio">Início</a>
+        </div>
+    </div>
+</body>
+</center>
+</html>

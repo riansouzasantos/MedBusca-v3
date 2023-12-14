@@ -2,9 +2,97 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/atualizar.css">
     <title>Atualização de URLs de Unidades</title>
-    <!-- Seus estilos e links para bibliotecas aqui -->
+    <link href="static/atualizar.css" rel="stylesheet">
+<style>
+
+/* Estilos base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+
+button[type="submit"] {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.botao-inicio {
+    padding: 10px 35px;
+    margin-top: 10px;  /* Espaço entre os botões */
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    width: 60px; /* Largura dos botões */
+    text-align: center;
+}
+
+.botao-inicio:hover {
+    background-color: #0056b3;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para telas menores */
+@media screen and (max-width: 768px) {
+    .botao-inicio {
+        width: auto; /* Largura automática para telas menores */
+        margin: 0 2px; /* Redefinir margens para os botões */
+    }
+}
+
+
+</style>
 </head>
 <body>
     <h1>Atualização de URLs de Unidades</h1>
@@ -37,7 +125,10 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit">Atualizar URLs</button>
+        <center>
+            <button type="submit">Atualizar URLs</button><br>
+            <a href="{{ url_for('hero') }}" class="botao-inicio">Início</a>
+        </center>
     </form>
 
     <!-- Exibição de Unidades (opcional) -->

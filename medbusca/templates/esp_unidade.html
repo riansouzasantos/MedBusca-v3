@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esp_unidade</title>
+</head>
+<body>
+    {% block body %}
+        <div class="container">
+            <h1>Especialidades por unidade</h1>
+        </div>
+        <div>
+            <div class="container">
+                <form method="POST" action="{{ url_for('especialidades') }}" role="form_especialidades" class="border">
+                    {{form_especialidades.csfr_token}}
+                    <fieldset>
+                        <div class="form-group">
+                             <p>{{form_especialidades.id_especialidade_m.label}}: {{form_especialidades.id_especialidade_m()}}</p>
+                        </div>
+                        <div class="form-group">
+                            <p>{{form_especialidades.descricao_esp.label}}: {{form_especialidades.descricao_esp()}}</p>
+                        </div>
+                        <button type="Incluir Especialidade" class="btn btn-default">Submit</button>
+                    </fieldset>
+                    <p>{{form_especialidades.botao_confirma}}</p>
+                </form>
+           <div>
+        </div>
+        <div class="container">
+            <table class="table table-success table-striped">
+                  <thead>
+                    <tr class="table-primary">
+                      <th scope="col">Código</th>
+                      <th scope="col">Nome da Especialidade</th>
+                      <th scope="col">UPAs que atendem à Especialidade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     {% for especialidade in especialidades %}
+                        <tr class="table-primary">
+                          <th scope="row">{{especialidade.id_especialidade_m}}</th>
+                          <td>
+                              <a href="{{ url_for('especialidade') }}">{{especialidade.descricao_esp}}</a>
+                          </td>
+                        </tr>
+                     {% endfor %}
+                  </tbody>
+            </table>
+        </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* Estilização para o título */
+
+.titulo {
+    color: #55a0f0; /* Cor azul do MedBusca */
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Estilos para tornar a tabela responsiva usando @media query */
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+
+/* Estilização para a tabela */
+.table {
+    width: 60%;
+    margin-bottom: 1rem;
+    color: #000; /* Cor do texto na tabela */
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6; /* Cor da borda da tabela */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,123,255,.05); /* Cor de fundo alternada para linhas ímpares */
+}
+
+.table-primary {
+    color: #2e1c58; /* Cor do texto nas células */
+    background-color: #dee2e6; /* Cor de fundo das células */
+}
+
+.botao-inicio {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 8px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out; /* Transição suave de cor */
+}
+
+.botao-inicio:hover {
+    background-color: #0056b3; /* Altera a cor ao passar o mouse */
+}

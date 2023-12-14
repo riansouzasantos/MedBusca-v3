@@ -6,8 +6,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 from medbusca.forms import DisponibilidadeMedicoForm
 from flask import request
-from medbusca.models import Disponibilidade_medico_view  # Importando o modelo correto
-
+from medbusca.models import Disponibilidade_medico_view, Especialidade_m, Gestor, ReceberInfo # Importando o modelo correto
+import csv
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -16,6 +16,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import time
+from io import TextIOWrapper, StringIO
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy import exc
 
 
 
@@ -132,8 +135,145 @@ def atualizaurl():
     return render_template('atualizar.html', unidades=unidades)
 #Exibe relação de upas
 #exibeupas
-@app.route('/exibeupas', methods=['POST', 'GET'])
-def exibeupas():
-    unidades = models.Unidade.query.all()
-    return render_template('atualizaurl.html', unidades=unidades)
+
+@app.route('/especialidades', methods=['POST','GET'])
+def especialidades():
+    especialidades = Especialidade_m.query.all()
+    return render_template('especialidades.html', especialidades=especialidades)
+
+
+
+#Exibe relação de upas
+#exibeupas
+@app.route('/exibeupas/<int:id_especialidade_m>', methods=['POST', 'GET'])
+def exibeupas(id_especialidade_m):
+    if id_especialidade_m != 0:
+        unidades = models.Unidades_por_especialidade_view.query.filter_by(id_especialidade_m=id_especialidade_m)
+    else:
+        unidades = models.Unidades_por_especialidade_view.query.all()
+    return render_template('exibeupas.html', unidades=unidades)
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        cpf = request.form['cpf']
+        senha = request.form['senha']
+
+        user = Gestor.query.filter_by(cpf=cpf, senha=senha).first()
+
+        if user:
+            if user.adm == 1:
+                # Redireciona para a página onde se encontra o cadastro de gestores (adm_sistema)
+                return redirect(url_for('adm_sistema'))
+            else:
+                # Se não for administrador, redireciona para outra página
+                return redirect(url_for('gestor_upa'))  # Altere para a página correta, se necessário
+
+        else:
+            return render_template('login.html', error='Credenciais inválidas')
+
+    return render_template('login.html')
+
+@app.route('/adm_sistema', methods=['GET', 'POST'])
+def adm_sistema():
+    # Renderiza a página adm_sistema
+    return render_template('adm_sistema.html')
+
+
+@app.route('/gestor_upa', methods=['GET', 'POST'])
+def gestor_upa():
+    message = None  # Inicializa a mensagem como nula
+    
+    if 'csv_file' in request.files:
+        csv_file = request.files['csv_file']
+        
+        if csv_file:
+            try:
+                csv_text = TextIOWrapper(csv_file, encoding='utf-8')
+                csv_data = csv.DictReader(csv_text)
+
+                # Receber o ID da unidade do CSV
+                id_unidade_list = [row.get('id_unidade') for row in csv_data]
+
+                # Excluir os registros com base no ID da unidade do CSV
+                ReceberInfo.query.filter(ReceberInfo.id_unidade.in_(id_unidade_list)).delete(synchronize_session=False)
+
+                csv_text.seek(0)  # Retornar ao início do arquivo
+                csv_data = csv.DictReader(csv_text)  # Recarregar os dados
+
+                for row in csv_data:
+                    try:
+                        id_especialidade_m = int(row.get('id_especialidade_m')) if row.get('id_especialidade_m') else None
+                    except (TypeError, ValueError):
+                        id_especialidade_m = None
+
+                    new_entry = ReceberInfo(
+                        id_unidade=row.get('id_unidade'),
+                        crm_medico=row.get('crm_medico'),
+                        dataHoraInicio=row.get('dataHoraInicio'),
+                        dataHoraFim=row.get('dataHoraFim') if row.get('dataHoraFim') not in ('', 'null') else None,
+                        id_especialidade_m=id_especialidade_m,
+                        descricao_esp=row.get('descricao_esp'),
+                        rua_unidade=row.get('rua_unidade'),
+                        cep_unidade=row.get('cep_unidade'),
+                        numero_unidade=row.get('numero_unidade'),
+                        bairro_unidade=row.get('bairro_unidade'),
+                        cidade_unidade=row.get('cidade_unidade'),
+                        estado_unidade=row.get('estado_unidade'),
+                        nome_unidade=row.get('nome_unidade'),
+                        url_unidade=row.get('url_unidade')
+                        # Adicione outras colunas conforme necessário
+                    )
+                    db.session.add(new_entry)
+                
+                db.session.commit()
+
+                message = "Arquivo CSV recebido e dados salvos no servidor com sucesso!"
+
+            except exc.SQLAlchemyError as e:
+                db.session.rollback()
+                error_msg = f"Erro ao processar o arquivo CSV: {str(e)}"
+                print(error_msg)
+                message = error_msg
+
+    return render_template('gestor_upa.html', message=message)
+
+@app.route('/cadastrar_gestor', methods=['GET', 'POST'])
+def cadastrar_gestor():
+    message = None  # Inicializa a mensagem como nula
+    
+    if request.method == 'POST':
+        cpf = request.form['cpf']
+        nome = request.form['nome']
+        telefone = request.form['telefone']
+        email = request.form['email']
+        senha = request.form['senha']
+        adm = True if 'adm' in request.form else False  # Define como True se 'adm' estiver presente no form
+
+        try:
+            # Criar um novo gestor com os dados recebidos
+            novo_gestor = Gestor(
+                cpf=cpf,
+                nome=nome,
+                telefone=telefone,
+                email=email,
+                senha=senha,
+                adm=adm
+            )
+
+            # Adicionar o novo gestor ao banco de dados
+            db.session.add(novo_gestor)
+            db.session.commit()
+
+            # Define a mensagem de confirmação
+            message = "Gestor cadastrado com sucesso!"
+
+        except Exception as e:
+            # Se ocorrer um erro ao cadastrar o gestor, faça um rollback
+            db.session.rollback()
+            message = f"Erro ao cadastrar o gestor: {str(e)}"
+
+    return render_template('adm_sistema.html', message=message)
 
